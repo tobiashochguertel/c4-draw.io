@@ -1,12 +1,19 @@
 /**
  * Draw.io Plugin to create C4 Architecture Diagramms
+ *
+ * LOAD C4 SHAPE LIBRARY:
+ *
+ * https://raw.githubusercontent.com/tobiashochguertel/draw-io/master/C4-drawIO.xml
  */
 Draw.loadPlugin(function (ui) {
+    var sidebar_id = 'c4';
+    var sidebar_title = 'C4 Notation';
+
     var c4Utils = {};
     c4Utils.isC4 = function (cell) {
         return (cell &&
             cell.hasOwnProperty('c4') &&
-            (cell.c4 != null));
+            (cell.c4 !== null));
     };
     c4Utils.isC4Model = function (cell) {
         return (c4Utils.isC4(cell) &&
@@ -21,7 +28,7 @@ Draw.loadPlugin(function (ui) {
             (cell.hasOwnProperty('value') &&
                 cell.value.length === 0 ) &&
             cell.getChildCount() === 2 &&
-            cell.getChildAt(0).value.getAttribute('c4Type') == 'body');
+            cell.getChildAt(0).value.getAttribute('c4Type') === 'body');
     };
 
     c4Utils.createSettingsIcon = function () {
@@ -38,7 +45,7 @@ Draw.loadPlugin(function (ui) {
             try {
                 var data = enc.document.createElement(func.name);
             } catch (e) {
-
+                (window.console && console.error(e));
             }
             return data
         };
@@ -68,14 +75,16 @@ Draw.loadPlugin(function (ui) {
         );
         mxEvent.addListener(img, 'click',
             mxUtils.bind(this, function (evt) {
-                if (c4Utils.isC4Person(this.state.cell)) {
+                var isC4Person = c4Utils.isC4Person(this.state.cell);
+                if (isC4Person) {
                     var cell = this.state.cell.getChildAt(0);
-                    if (cell != null) {
+                    if (cell !== null) {
                         var dlg = new EditDataDialog(ui, cell);
                         ui.showDialog(dlg.container, 320, 320, true, false);
                         dlg.init();
                     }
-                } else {
+                }
+                if (!isC4Person) {
                     ui.actions.get('editData').funct();
                 }
                 mxEvent.consume(evt);
@@ -90,34 +99,29 @@ Draw.loadPlugin(function (ui) {
         this.redrawTools();
     };
     c4StateHandler.prototype.redrawTools = function () {
-        if (this.state != null && this.domNode != null) {
-            var dy = (mxClient.IS_VML && document.compatMode == 'CSS1Compat') ? 20 : 4;
+        if (this.state !== null && this.domNode !== null) {
+            var dy = (mxClient.IS_VML && document.compatMode === 'CSS1Compat') ? 20 : 4;
             this.domNode.style.left = (this.state.x + this.state.width - this.domNode.children.length * 14) + 'px';
             this.domNode.style.top = (this.state.y + this.state.height + dy) + 'px';
         }
     };
     c4StateHandler.prototype.destroy = function (sender, me) {
         mxVertexHandler.prototype.destroy.apply(this, arguments);
-        if (this.domNode != null) {
+        if (this.domNode !== null) {
             this.domNode.parentNode.removeChild(this.domNode);
             this.domNode = null;
         }
     };
-    origGraphCreateHander = ui.editor.graph.createHandler;
-    ui.editor.graph.createHandler = function (state) {
-        if (state != null && (this.getSelectionCells().length == 1) && c4Utils.isC4(state.cell) && state.cell.c4.handler) {
-            return new state.cell.c4.handler(state);
-        }
-        return origGraphCreateHander.apply(this, arguments);
+
+    C4Person = function () {
     };
-
-
-    function createC4Person(c4) {
+    C4Person.prototype.handler = c4StateHandler;
+    C4Person.prototype.create = function () {
         var group = new mxCell('', new mxGeometry(0, 0, 160, 180), 'group;rounded=0;labelBackgroundColor=none;fillColor=none;fontColor=#000000;align=center;html=1;');
         group.setVertex(true);
         group.setConnectable(false);
         group.setAttribute('c4Type', 'person');
-        group.c4 = c4;
+        group.c4 = this;
         var body = new mxCell('', new mxGeometry(0, 70, 160, 110), 'rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#dae8fc;fontColor=#000000;align=center;arcSize=33;strokeColor=#6c8ebf;');
         body.setParent(group);
         body.setVertex(true);
@@ -127,35 +131,35 @@ Draw.loadPlugin(function (ui) {
         body.setAttribute('c4Name', 'name');
         body.setAttribute('c4Type', 'body');
         body.setAttribute('c4Description', 'Beschreibung');
-        body.c4 = c4;
+        body.c4 = this;
         var head = new mxCell('', new mxGeometry(40, 0, 80, 80), 'ellipse;whiteSpace=wrap;html=1;aspect=fixed;rounded=0;labelBackgroundColor=none;fillColor=#dae8fc;fontSize=12;fontColor=#000000;align=center;strokeColor=#6c8ebf;');
         head.setParent(group);
         head.setVertex(true);
         head.setAttribute('c4Type', 'head');
-        head.c4 = c4;
-        group.insert(head); // child: 0
-        group.insert(body); // child: 1
+        head.c4 = this;
+        group.insert(head);
+        group.insert(body); // child: 0 !!
         return group;
-    }
-
-    C4Person = function () {
     };
-    C4Person.prototype.create = function () {
-        return createC4Person(this);
-    };
-    C4Person.prototype.handler = c4StateHandler;
     c4Utils.registCodec(C4Person);
 
-    // Load custom Shape Library...
-    // https://raw.githubusercontent.com/tobiashochguertel/draw-io/master/C4-drawIO.xml
     // Adds custom sidebar entry
-    ui.sidebar.addPalette('c4', 'C4 Notation', true, function (content) {
+    ui.sidebar.addPalette(sidebar_id, sidebar_title, true, function (content) {
         var verticies = [C4Person];
         for (var i in verticies) {
             var cell = verticies[i].prototype.create();
             content.appendChild(ui.sidebar.createVertexTemplateFromCells([cell], cell.geometry.width, cell.geometry.height, cell.label));
         }
     });
+
+    // Add custom handler-code for the event of data-editor instanzing to provide a custom data-editor dialog.
+    origGraphCreateHander = ui.editor.graph.createHandler;
+    ui.editor.graph.createHandler = function (state) {
+        if (state !== null && (this.getSelectionCells().length === 1) && c4Utils.isC4(state.cell) && state.cell.c4.handler) {
+            return new state.cell.c4.handler(state);
+        }
+        return origGraphCreateHander.apply(this, arguments);
+    };
 
     // START -> CUSTOM EDITOR MENU!
     origEditDataDialog = EditDataDialog;
@@ -209,11 +213,11 @@ Draw.loadPlugin(function (ui) {
             var nodeName = attrs[i].nodeName;
             var nodeValue = attrs[i].nodeValue;
             // if (cell.awssf.hiddenAttributes && cell.awssf.hiddenAttributes.indexOf(nodeName) >= 0) continue;
-            if (nodeName == 'c4Type') {
+            if (nodeName === 'c4Type') {
                 var span = document.createElement('span');
                 mxUtils.write(span, nodeValue);
                 form.addField('c4Type:', span);
-            } else if (nodeName == 'label') {
+            } else if (nodeName === 'label') {
                 addAttribute(count, nodeName, nodeValue);
                 count++;
                 var labelDiv = document.createElement('div');
@@ -221,7 +225,7 @@ Draw.loadPlugin(function (ui) {
                 labelDiv.innerHTML = nodeValue;
                 div.appendChild(labelDiv);
             }
-            else if (nodeName != 'placeholders') {
+            else if (nodeName !== 'placeholders') {
                 addTextArea(count, nodeName, nodeValue);
                 count++;
             }
@@ -268,13 +272,13 @@ Draw.loadPlugin(function (ui) {
                     if (cell.c4 && cell.c4.applyForm) {
                         removeLabel = removeLabel || cell.c4.applyForm(value, names[i], texts[i]);
                     } else {
-                        if (texts[i] == null) {
+                        if (texts[i] === null) {
                             value.removeAttribute(names[i]);
                         }
                         else {
                             value.setAttribute(names[i], texts[i].value);
-                            removeLabel = removeLabel || (names[i] == 'placeholder' &&
-                                value.getAttribute('placeholders') == '1');
+                            removeLabel = removeLabel || (names[i] === 'placeholder' &&
+                                value.getAttribute('placeholders') === '1');
                         }
                     }
                 }
@@ -294,20 +298,18 @@ Draw.loadPlugin(function (ui) {
         buttons.style.marginTop = '18px';
         buttons.style.textAlign = 'right';
 
-
-
         if (graph.getModel().isVertex(cell) || graph.getModel().isEdge(cell)) {
             var replace = document.createElement('span');
             replace.style.marginRight = '10px';
             var input = document.createElement('input');
             input.setAttribute('type', 'checkbox');
             input.style.marginRight = '6px';
-            if (value.getAttribute('placeholders') == '1') {
+            if (value.getAttribute('placeholders') === '1') {
                 input.setAttribute('checked', 'checked');
                 input.defaultChecked = true;
             }
             mxEvent.addListener(input, 'click', function () {
-                if (value.getAttribute('placeholders') == '1') {
+                if (value.getAttribute('placeholders') === '1') {
                     value.removeAttribute('placeholders');
                 }
                 else {
@@ -316,17 +318,14 @@ Draw.loadPlugin(function (ui) {
             });
             replace.appendChild(input);
             mxUtils.write(replace, mxResources.get('placeholders'));
-            if (EditDataDialog.placeholderHelpLink != null) {
-                var createHelpLink = function(){
+            if (EditDataDialog.placeholderHelpLink !== null) {
+                var createHelpIcon = function () {
                     var link = document.createElement('a');
                     link.setAttribute('href', EditDataDialog.placeholderHelpLink);
                     link.setAttribute('title', mxResources.get('help'));
                     link.setAttribute('target', '_blank');
                     link.style.marginLeft = '10px';
                     link.style.cursor = 'help';
-                    return link;
-                }();
-                var createInfoLink = function () {
                     var icon = document.createElement('img');
                     icon.setAttribute('border', '0');
                     icon.setAttribute('valign', 'middle');
