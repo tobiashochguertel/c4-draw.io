@@ -261,7 +261,6 @@ Draw.loadPlugin(function (ui) {
     C4Relationship.prototype.handler = c4StateHandler;
     C4Relationship.prototype.create = function () {
         var label = '<div style="text-align: left"><div style="text-align: center"><b>Beschreibung</b></div><div style="text-align: center">[technology]</div></div>';
-        // var cell = new mxCell('', new mxGeometry(0, 0, 160, 0), 'endArrow=open;endSize=12;dashed=1;html=1;shadow=0;');
         var cell = new mxCell('', new mxGeometry(0, 0, 160, 0), 'edgeStyle=none;rounded=0;html=1;entryX=0;entryY=0.5;jettySize=auto;orthogonalLoop=1;strokeColor=#A8A8A8;strokeWidth=2;fontColor=#000000;jumpStyle=none;dashed=1;');
         cell.setValue(mxUtils.createXmlDocument().createElement('object'));
         cell.geometry.setTerminalPoint(new mxPoint(0, 0), true);
@@ -279,12 +278,13 @@ Draw.loadPlugin(function (ui) {
 
     // Adds custom sidebar entry
     ui.sidebar.addPalette(sidebar_id, sidebar_title, true, function (content) {
-        var verticies = [C4Person, C4SoftwareSystem, C4Container, C4Component, C4ExecutionEnvironment, C4DeploymentNode, C4Database]; // C4Relationship, C4DynamicRelationship];
+        var verticies = [C4Person, C4SoftwareSystem, C4Container, C4Component, C4ExecutionEnvironment, C4DeploymentNode, C4Database];
         for (var i in verticies) {
             var cell = verticies[i].prototype.create();
             content.appendChild(ui.sidebar.createVertexTemplateFromCells([cell], cell.geometry.width, cell.geometry.height, cell.label));
         }
         content.appendChild(ui.sidebar.createEdgeTemplateFromCells([C4Relationship.prototype.create()], 160, 0, 'C4 Relationship'));
+        // , C4DynamicRelationship];
     });
 
     // Add custom handler-code for the event of data-editor instanzing to provide a custom data-editor dialog.
