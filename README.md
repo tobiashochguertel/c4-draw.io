@@ -10,7 +10,7 @@
 1. Select Save Option (ex. Decide Later...)
 1. Select Menu [Extras]-[Plugins]
 1. Click [Add]
-1. Input https://raw.githubusercontent.com/tobiashochguertel/c4-draw.io/master/c4.js
+1. Input https://tobiashochguertel.github.io/c4-draw.io/c4.js
 1. [Apply]
 1. Reload the page
 
