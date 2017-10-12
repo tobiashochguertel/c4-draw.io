@@ -1,5 +1,6 @@
 .idea/
-c4-draw.io.iml
+*.iml
+*.sublime-project
 
 # Created by https://www.gitignore.io/api/java,linux,macos,extjs,windows,eclipse,netbeans,jetbrains,sublimetext
 
