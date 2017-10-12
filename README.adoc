@@ -1,3 +1,6 @@
+:experimental:
+:imagesdir: img/
+
 [[c4-modelling-little-bit-easier-c4-draw.io]]
 C4 Modelling little bit easier (c4-draw.io)
 -------------------------------------------
@@ -16,44 +19,100 @@ C4 Notation Elements in draw.io.
 Quick Start
 ~~~~~~~~~~~
 
-1.  Access to https://www.draw.io/.
-2.  Select Save Option (ex. Decide Later...)
-3.  Select Menu [Extras]-[Plugins]
-4.  Click [Add]
-5.  Input https://tobiashochguertel.github.io/c4-draw.io/c4.js
-6.  [Apply]
-7.  Reload the page
+1.  Access to link:https://www.draw.io/[].
+2.  Save the drawing, or decide later: kbd:[File] -> kbd:[Save] -> kbd:[Option]
+3.  Open the plugin dialog: kbd:[Extras] -> kbd:[Plugins]
+4.  Open the add plugin dialog with an click: kbd:[Add]
+5.  Put in the field kbd:[Enter Value (URL):] the link to the plugin: kbd:[https://tobiashochguertel.github.io/c4-draw.io/c4.js]
+6.  Click on kbd:[Apply]
+7.  _Reload the page!_ to see the C4 Notation Shapes in the shape panel (_figure 1_).
 
-* You can run locally draw.io in the browser too. See details
-https://github.com/jgraph/draw.io/wiki/Building[draw.io Wiki page]
-
-[[example]]
-Example
-~~~~~~~
-
-1.  Drag and drop a *Start* on a diagram
-2.  Drag and drop a *Task* on a diagram
-3.  Select *Task*, and click a *Settings*(gear) icon, and Input params
-4.  Drag a connection from *Start* to *Task*
-5.  Drag and drop a *End* on a diagram
-6.  Drag a connection from *Task* to *End*
-7.  Menu [StepFunctions]-[Export JSON]
-8.  Copy the output and paste it to AWS Step Functions management
-console.
+.figure 1: After the reload, the C4 Notation Shapes are available from the shape panel:
+image:C4NotationShapes.png[]
 
 [[usage]]
 Usage
 ~~~~~
 
-[[fields-of-c4-notation-element]]
-Fields of C4 Notation-Element
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.figure 2: Quick demostration of how to use the c4-model plugin:
+image:c4-draw.io-preview-demostration.gif[]
 
-* You can set them with [Edit Data...] on a diagram.
+. Drag a C4 notation shape on the diagram paper
+. The most C4 notation shapes provide an small gear icon when they are selected. (_figure 3_)
+. Edit the Properties of the selected C4 Notation Shape: (_figure 4_)
+  .. Click the small gear to open the _properties dialog_ (_figure 3_)
+  .. Press the key-stroke kbd:[CMD+M] to open the _properties dialog_ (_figure 3_)
+  .. ,or use the menu: kbd:[Edit] -> kbd:[Edit Data (CMD + M)] (_figure 6_)
+. Input Cursor / Focus is on the first field of the dialog, and with kbd:[tab] you can jump through the fields and submit (_figure 5_).
+
+.figure 3: Location of the small gear, to open the properties dialog:
+image:small-gear-on-c4-person-shape.png[]
+
+.figure 4: Example of properties dialog of an C4-Person notation shape:
+image:Data-Editor-Dialog-to-set-the-oroperties.png[]
+
+.figure 5: Control tab order of the properties fields:
+image:Control-Tab-Order-of-C4-Notation-Shape-Properties-Dialog.png[]
+
+.figure 6: Other way to open the properties dialog:
+image:Open-the-Properties-Dialog-from-Menu-bar.png[]
+
+
+[[Good-to-Know-about-the-c4-shapes]]
+Good-to-Know about the C4 shapes:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- *[red]#Some C4 shapes have issues/limitations which I description in this section:#*
+
+[[c4-relationship-notation-shape]]
+C4-Relationship Notation shape:
++++++++++++++++++++++++++++++++
+
+- Has also a properties dialog, but the small gear icon isn't available with this shape. (technical reason, I haven't found a solution, yet.)
+
+- To open for a C4 Relationship shape the Properties Editor:
+  -- key-stroke or over menu.
+
+[[c4-person-notation-shape]]
+C4-Person Notation shape:
++++++++++++++++++++++++++
+
+- Has also a little technical issue, to open the properties dialog,
+  -- gear icon or over menu.
+
+[[directly-modify-the-shape-text]]
+Modify the text on the shapes directly rather than using the properties dialog:
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+. *is possible,*
+. can be hany when you want to (re-)format the text, e.g. bold, italic, font size or when you want to insert a line break within the text/properties.
+. *but keep in mind,*
+. if you change the text here directly, and as next open the properties dialog of this shape, your changes will get lost because the informations on the shape will be reseted to the values from the properties dialog.
+
+[quote, Tobias Hochgürtel]
+Sorry for these issues, I keep fixing these in my spare time, feel free to create an link:https://github.com/tobiashochguertel/c4-draw.io/issues[issue], or provide an pull request, hints and ideas what We could improve!
+
+[[Key-Strokes]]
+Key-Strokes
+~~~~~~~~~~~
+
+.Table 1: Key-Strokes
+|===
+|Key-Stroke|Description
+
+|kbd:[CMD + M]
+|Open's the Data-Editor Dialog (_properties dialog_) of an selected shape on the diagramm.
+
+|===
 
 [[credits]]
 Credits
 ~~~~~~~
 
-* Thanks to https://github.com/sakazuki/step-functions-draw.io[AWS Step
-Functions Workflow Designer] which has inspired me to done this plugin.
+I want to thank the following people and organisations:
+
+* Draw.io Plugin: https://github.com/sakazuki/step-functions-draw.io[AWS Step
+Functions Workflow Designer], which has inspired me to done this plugin, and what I use as code-base to done the plugin.
+* C4Model Auhtor: https://twitter.com/simonbrown[Simon Brown], thanks for let me know that this us useful and thanks for  sharing your knowledge about software architecture.
+* https://www.draw.io/[draw.io], to provide draw.io as open source _software system_.
+
