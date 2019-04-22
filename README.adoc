@@ -37,8 +37,8 @@ image:C4NotationShapes.png[]
 Usage
 ~~~~~
 
-.figure 2: Quick demostration of how to use the c4-model plugin:
-image:c4-draw.io-preview-demostration.gif[]
+.figure 2: Quick demonstration of how to use the c4-model plugin:
+image:c4-draw.io-preview-demonstration.gif[]
 
 . Drag a C4 notation shape on the diagram paper
 . The most C4 notation shapes provide an small gear icon when they are selected. (_figure 3_)
@@ -52,7 +52,7 @@ image:c4-draw.io-preview-demostration.gif[]
 image:small-gear-on-c4-person-shape.png[]
 
 .figure 4: Example of properties dialog of an C4-Person notation shape:
-image:Data-Editor-Dialog-to-set-the-oroperties.png[]
+image:Data-Editor-Dialog-to-set-the-properties.png[]
 
 .figure 5: Control tab order of the properties fields:
 image:Control-Tab-Order-of-C4-Notation-Shape-Properties-Dialog.png[]
@@ -88,9 +88,9 @@ Modify the text on the shapes directly rather than using the properties dialog:
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 . *is possible,*
-. can be hany when you want to (re-)format the text, e.g. bold, italic, font size or when you want to insert a line break within the text/properties.
+. can be handy when you want to (re-)format the text, e.g. bold, italic, font size or when you want to insert a line break within the text/properties.
 . *but keep in mind,*
-. if you change the text here directly, and as next open the properties dialog of this shape, your changes will get lost because the informations on the shape will be reseted to the values from the properties dialog.
+. if you change the text here directly, and as next open the properties dialog of this shape, your changes will get lost because the information on the shape will be reset to the values from the properties dialog.
 
 [quote, Tobias Hochgürtel]
 Sorry for these issues, I keep fixing these in my spare time, feel free to create an link:https://github.com/tobiashochguertel/c4-draw.io/issues[issue], or provide an pull request, hints and ideas what We could improve!
@@ -104,7 +104,7 @@ Key-Strokes
 |Key-Stroke|Description
 
 |kbd:[CMD + M]
-|Open's the Data-Editor Dialog (_properties dialog_) of an selected shape on the diagramm.
+|Open's the Data-Editor Dialog (_properties dialog_) of an selected shape on the diagram.
 
 |===
 
@@ -116,6 +116,6 @@ I want to thank the following people and organisations:
 
 * Draw.io Plugin: https://github.com/sakazuki/step-functions-draw.io[AWS Step
 Functions Workflow Designer], which has inspired me to done this plugin, and what I use as code-base to done the plugin.
-* C4Model Auhtor: https://twitter.com/simonbrown[Simon Brown], thanks for let me know that this us useful and thanks for  sharing your knowledge about software architecture.
+* C4Model Author: https://twitter.com/simonbrown[Simon Brown], thanks for let me know that this us useful and thanks for  sharing your knowledge about software architecture.
 * https://www.draw.io/[draw.io], to provide draw.io as open source _software system_.
 
