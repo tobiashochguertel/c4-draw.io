@@ -451,16 +451,16 @@ Draw.loadPlugin(function (ui) {
                     if (labelIndex >= 0) {
                         switch (cell.getAttribute('c4Type')) {
                             case 'body':
-                                texts[labelIndex].value = c4Name + '<div>[Person]</div><div><br></div><div>' + c4Description;
+                                texts[labelIndex].value = '<b>' + c4Name + '</b><div>[Person]</div><div><br></div><div>' + c4Description;
                                 break;
                             case 'SoftwareSystem':
-                                texts[labelIndex].value = c4Name + '<div>[Software System]</div><div><br></div><div>' + c4Description;
+                                texts[labelIndex].value = '<b>' + c4Name + '</b><div>[Software System]</div><div><br></div><div>' + c4Description;
                                 break;
                             case 'Container':
-                                texts[labelIndex].value = '<span>' + c4Name + '</span><div>[Container:&nbsp;<span>' + c4Technology + '</span><span>]</span></div><div><br></div><div>' + c4Description + '</div>';
+                                texts[labelIndex].value = '<span><b>' + c4Name + '</b></span><div>[Container:&nbsp;<span>' + c4Technology + '</span><span>]</span></div><div><br></div><div>' + c4Description + '</div>';
                                 break;
                             case 'Component':
-                                texts[labelIndex].value = '<span>' + c4Name + '</span><div>[Component:&nbsp;<span>' + c4Technology + '</span><span>]</span></div><div><br></div><div>' + c4Description + '</div>';
+                                texts[labelIndex].value = '<span><b>' + c4Name + '</b></span><div>[Component:&nbsp;<span>' + c4Technology + '</span><span>]</span></div><div><br></div><div>' + c4Description + '</div>';
                                 break;
                             case 'Relationship':
                                 texts[labelIndex].value = '<div style="text-align: left"><div style="text-align: center"><b>' + c4Description + '</b></div><div style="text-align: center">[' + c4Technology + ']</div></div>';
