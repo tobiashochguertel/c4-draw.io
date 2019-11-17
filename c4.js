@@ -466,10 +466,10 @@ Draw.loadPlugin(function (ui) {
                                 texts[labelIndex].value = '<div style="text-align: left"><div style="text-align: center"><b>' + c4Description + '</b></div><div style="text-align: center">[' + c4Technology + ']</div></div>';
                                 break;
                             case 'ExecutionEnvironment':
-                                texts[labelIndex].value = '<div style="text-align: left">' + c4Name + '</div><div style="text-align: left">[' + c4Application + ']</div>';
+                                texts[labelIndex].value = '<div style="text-align: left"><b>' + c4Name + '</b></div><div style="text-align: left">[' + c4Application + ']</div>';
                                 break;
                             case 'DeploymentNode':
-                                texts[labelIndex].value = '<div style="text-align: left">' + c4Name + '</div><div style="text-align: left">[' + c4OperationSystem + ']</div><div style="text-align: right">' + c4ScalingFactor + '</div>';
+                                texts[labelIndex].value = '<div style="text-align: left"><b>' + c4Name + '</b></div><div style="text-align: left">[' + c4OperationSystem + ']</div><div style="text-align: right">' + c4ScalingFactor + '</div>';
                                 break;
                             case 'DynamicRelationship':
                                 texts[labelIndex].value = '<bold>' + c4Step + ': </bold><bold>' + c4Description + '</bold>' + '<div>[' + c4Technology + ']</div><div><br></div><div>';
