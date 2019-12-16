@@ -1,3 +1,4 @@
+
 /**
  * Draw.io Plugin to create C4 Architecture Diagramms
  *
@@ -134,7 +135,7 @@ Draw.loadPlugin(function (ui) {
         body.setParent(group);
         body.setVertex(true);
         body.setValue(mxUtils.createXmlDocument().createElement('object'));
-        body.setAttribute('label', 'name<div>[Person]</div><div><br></div><div>Beschreibung</div>');
+        body.setAttribute('label', '<b>name</b><div>[Person]</div><div><br></div><div>Beschreibung</div>');
         body.setAttribute('placeholders', '1');
         body.setAttribute('c4Name', 'name');
         body.setAttribute('c4Type', 'body');
@@ -158,7 +159,7 @@ Draw.loadPlugin(function (ui) {
         var c4SoftwareSystem = new mxCell('', new mxGeometry(0, 70, 160, 110), 'rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#dae8fc;fontColor=#000000;align=center;arcSize=7;strokeColor=#6c8ebf;');
         c4SoftwareSystem.setVertex(true);
         c4SoftwareSystem.setValue(mxUtils.createXmlDocument().createElement('object'));
-        c4SoftwareSystem.setAttribute('label', 'name<div>[Software System]</div><div><br></div><div>Beschreibung</div>');
+        c4SoftwareSystem.setAttribute('label', '<b>name</b><div>[Software System]</div><div><br></div><div>Beschreibung</div>');
         c4SoftwareSystem.setAttribute('placeholders', '1');
         c4SoftwareSystem.setAttribute('c4Name', 'name');
         c4SoftwareSystem.setAttribute('c4Type', 'SoftwareSystem');
@@ -175,7 +176,7 @@ Draw.loadPlugin(function (ui) {
         var c4Container = new mxCell('', new mxGeometry(0, 70, 160, 110), 'rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#dae8fc;fontColor=#000000;align=center;arcSize=6;strokeColor=#6c8ebf;');
         c4Container.setVertex(true);
         c4Container.setValue(mxUtils.createXmlDocument().createElement('object'));
-        c4Container.setAttribute('label', '<span>name</span><div>[Container:&nbsp;<span>technology</span><span>]</span></div><div><br></div><div>Beschreibung</div>');
+        c4Container.setAttribute('label', '<span><b>name</b></span><div>[Container:&nbsp;<span>technology</span><span>]</span></div><div><br></div><div>Beschreibung</div>');
         c4Container.setAttribute('placeholders', '1');
         c4Container.setAttribute('c4Name', 'name');
         c4Container.setAttribute('c4Type', 'Container');
@@ -193,7 +194,7 @@ Draw.loadPlugin(function (ui) {
         var c4Component = new mxCell('', new mxGeometry(0, 70, 160, 110), 'rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#dae8fc;fontColor=#000000;align=center;arcSize=7;strokeColor=#6c8ebf;');
         c4Component.setVertex(true);
         c4Component.setValue(mxUtils.createXmlDocument().createElement('object'));
-        c4Component.setAttribute('label', '<span>name</span><div>[Component:&nbsp;<span>technology</span><span>]</span></div><div><br></div><div>Beschreibung</div>');
+        c4Component.setAttribute('label', '<span><b>name</b></span><div>[Component:&nbsp;<span>technology</span><span>]</span></div><div><br></div><div>Beschreibung</div>');
         c4Component.setAttribute('placeholders', '1');
         c4Component.setAttribute('c4Name', 'name');
         c4Component.setAttribute('c4Type', 'Component');
@@ -450,25 +451,25 @@ Draw.loadPlugin(function (ui) {
                     if (labelIndex >= 0) {
                         switch (cell.getAttribute('c4Type')) {
                             case 'body':
-                                texts[labelIndex].value = c4Name + '<div>[Person]</div><div><br></div><div>' + c4Description;
+                                texts[labelIndex].value = '<b>' + c4Name + '</b><div>[Person]</div><div><br></div><div>' + c4Description;
                                 break;
                             case 'SoftwareSystem':
-                                texts[labelIndex].value = c4Name + '<div>[Software System]</div><div><br></div><div>' + c4Description;
+                                texts[labelIndex].value = '<b>' + c4Name + '</b><div>[Software System]</div><div><br></div><div>' + c4Description;
                                 break;
                             case 'Container':
-                                texts[labelIndex].value = '<span>' + c4Name + '</span><div>[Container:&nbsp;<span>' + c4Technology + '</span><span>]</span></div><div><br></div><div>' + c4Description + '</div>';
+                                texts[labelIndex].value = '<span><b>' + c4Name + '</b></span><div>[Container:&nbsp;<span>' + c4Technology + '</span><span>]</span></div><div><br></div><div>' + c4Description + '</div>';
                                 break;
                             case 'Component':
-                                texts[labelIndex].value = '<span>' + c4Name + '</span><div>[Component:&nbsp;<span>' + c4Technology + '</span><span>]</span></div><div><br></div><div>' + c4Description + '</div>';
+                                texts[labelIndex].value = '<span><b>' + c4Name + '</b></span><div>[Component:&nbsp;<span>' + c4Technology + '</span><span>]</span></div><div><br></div><div>' + c4Description + '</div>';
                                 break;
                             case 'Relationship':
                                 texts[labelIndex].value = '<div style="text-align: left"><div style="text-align: center"><b>' + c4Description + '</b></div><div style="text-align: center">[' + c4Technology + ']</div></div>';
                                 break;
                             case 'ExecutionEnvironment':
-                                texts[labelIndex].value = '<div style="text-align: left">' + c4Name + '</div><div style="text-align: left">[' + c4Application + ']</div>';
+                                texts[labelIndex].value = '<div style="text-align: left"><b>' + c4Name + '</b></div><div style="text-align: left">[' + c4Application + ']</div>';
                                 break;
                             case 'DeploymentNode':
-                                texts[labelIndex].value = '<div style="text-align: left">' + c4Name + '</div><div style="text-align: left">[' + c4OperationSystem + ']</div><div style="text-align: right">' + c4ScalingFactor + '</div>';
+                                texts[labelIndex].value = '<div style="text-align: left"><b>' + c4Name + '</b></div><div style="text-align: left">[' + c4OperationSystem + ']</div><div style="text-align: right">' + c4ScalingFactor + '</div>';
                                 break;
                             case 'DynamicRelationship':
                                 texts[labelIndex].value = '<bold>' + c4Step + ': </bold><bold>' + c4Description + '</bold>' + '<div>[' + c4Technology + ']</div><div><br></div><div>';
