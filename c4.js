@@ -477,6 +477,9 @@ Draw.loadPlugin(function (ui) {
                             case 'SoftwareSystem':
                                 texts[labelIndex].value = '<b>' + c4Name + '</b><div>[Software System]</div><div><br></div><div>' + c4Description;
                                 break;
+                            case 'SoftwareSystemDependency':
+                                texts[labelIndex].value = '<b>' + c4Name + '</b><div>[Software System]</div><div><br></div><div>' + c4Description;
+                                break;
                             case 'Container':
                                 texts[labelIndex].value = '<span><b>' + c4Name + '</b></span><div>[Container:&nbsp;<span>' + c4Technology + '</span><span>]</span></div><div><br></div><div>' + c4Description + '</div>';
                                 break;
