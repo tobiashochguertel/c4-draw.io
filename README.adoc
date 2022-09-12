@@ -25,7 +25,7 @@ Quick Start
 1.  Access to link:https://www.draw.io/[].
 2.  Save the drawing, or decide later: kbd:[File] -> kbd:[Save] -> kbd:[Option]
 3.  Open the plugin dialog: kbd:[Extras] -> kbd:[Plugins]
-4.  Open the add plugin dialog with an click: kbd:[Add]
+4.  Open the add plugin dialog with a click: kbd:[Add]
 5.  Put in the field kbd:[Enter Value (URL):] the link to the plugin: kbd:[https://tobiashochguertel.github.io/c4-draw.io/c4.js]
 6.  Click on kbd:[Apply]
 7.  _Reload the page!_ to see the C4 Notation Shapes in the shape panel (_figure 1_).
@@ -41,7 +41,7 @@ Usage
 image:c4-draw.io-preview-demonstration.gif[]
 
 . Drag a C4 notation shape on the diagram paper
-. The most C4 notation shapes provide an small gear icon when they are selected. (_figure 3_)
+. The most C4 notation shapes provide a small gear icon when they are selected. (_figure 3_)
 . Edit the Properties of the selected C4 Notation Shape: (_figure 4_)
   .. Click the small gear to open the _properties dialog_ (_figure 3_)
   .. Press the key-stroke kbd:[CMD+M] to open the _properties dialog_ (_figure 3_)
@@ -51,7 +51,7 @@ image:c4-draw.io-preview-demonstration.gif[]
 .figure 3: Location of the small gear, to open the properties dialog:
 image:small-gear-on-c4-person-shape.png[]
 
-.figure 4: Example of properties dialog of an C4-Person notation shape:
+.figure 4: Example of properties dialog of a C4-Person notation shape:
 image:Data-Editor-Dialog-to-set-the-properties.png[]
 
 .figure 5: Control tab order of the properties fields:
@@ -93,7 +93,7 @@ Modify the text on the shapes directly rather than using the properties dialog:
 . if you change the text here directly, and as next open the properties dialog of this shape, your changes will get lost because the information on the shape will be reset to the values from the properties dialog.
 
 [quote, Tobias Hochgürtel]
-Sorry for these issues, I keep fixing these in my spare time, feel free to create an link:https://github.com/tobiashochguertel/c4-draw.io/issues[issue], or provide an pull request, hints and ideas what We could improve!
+Sorry for these issues, I keep fixing these in my spare time, feel free to create a link:https://github.com/tobiashochguertel/c4-draw.io/issues[issue], or provide an pull request, hints and ideas what We could improve!
 
 [[Key-Strokes]]
 Key-Strokes
@@ -116,6 +116,6 @@ I want to thank the following people and organisations:
 
 * Draw.io Plugin: https://github.com/sakazuki/step-functions-draw.io[AWS Step
 Functions Workflow Designer], which has inspired me to done this plugin, and what I use as code-base to done the plugin.
-* C4Model Author: https://twitter.com/simonbrown[Simon Brown], thanks for let me know that this us useful and thanks for  sharing your knowledge about software architecture.
+* C4Model Author: https://twitter.com/simonbrown[Simon Brown], thanks for letting me know that this useful and thanks for sharing your knowledge about software architecture.
 * https://www.draw.io/[draw.io], to provide draw.io as open source _software system_.
 
